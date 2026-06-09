@@ -1,0 +1,2 @@
+raw_rows,labeled_rows,positive_label_count,negative_label_count,anchor_present
+570,171,88,83,True

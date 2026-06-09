@@ -5,6 +5,44 @@
 ## 项目简介
 cBD3-DeepEvo-Pept是一个基于机器学习与进化算法的抗菌肽设计与优化平台。该项目整合了多种特征提取方法、随机森林分类器和先进的遗传算法，用于设计和优化具有高抗菌活性的多肽序列。平台不仅支持常规序列进化，还提供了带约束条件的进化算法，确保生成的肽序列具有更好的溶解性和安全性。
 
+## 顶刊冲刺版 DeepEvo-Pept Pipeline
+
+新增 `deep_evo_top_journal_pipeline.py`，用于生成论文算法板块所需的可复现实验证据。该流程固定为：
+
+```text
+my_500_peptides.csv -> final_train_set.csv -> descriptor/ESM-2 features -> model ablation
+-> constrained candidates -> NSGA-II Pareto ranking -> MD/MIC/hemolysis evidence table
+```
+
+核心升级：
+
+- 数据层：按 `MIC <= 10 且 Hemolysis < 20` 标记好肽，按 `MIC >= 32` 标记差肽，中间区间丢弃；保留 cBD3-ABU 作为待 rescue 的 scaffold anchor。
+- 表征层：同时输出可解释 descriptor、真实 ESM-2 embedding 和 `Descriptor+ESM2` hybrid 输入。
+- 模型层：5-fold StratifiedKFold 比较 Logistic Regression、Random Forest、HistGradientBoosting，报告 Accuracy、ROC-AUC、Precision、Recall、F1。
+- 优化层：对 `candidates_v2.csv` 进行 NSGA-II-style Pareto ranking，输出活性、安全性、两亲性、电荷、scaffold similarity、可合成性和疏水风险目标。
+- 证据闭环：整合 Rank7/Rank9/Rank12 的 Pareto score、MD RMSD/RMSF、MIC 和溶血数据，用于解释多目标 trade-off。
+
+运行：
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python deep_evo_top_journal_pipeline.py
+python validate_top_journal_outputs.py
+```
+
+关键输出位于 `results/top_journal/`：
+
+- `model_cv_metrics_summary.csv`：Descriptor-only vs ESM2-only vs Hybrid 模型性能表
+- `candidate_pareto_nsga2.csv`：候选序列 ParetoRank、CrowdingDistance 和多目标分数
+- `candidate_similarity_nearest_neighbors.csv`：cBD3-ABU/训练集最近邻相似性
+- `candidate_integrated_evidence.csv`：Rank7/Rank9/Rank12/cBD3-ABU 的算法、MD、MIC、溶血综合证据
+- `ablation_summary.csv`：Random mutation、Basic GA、Constrained GA、ESM2-NSGA-II 消融
+- `figures/`：模型消融、ESM-2 PCA、Pareto front、综合 ranking heatmap
+
+当前本地复现实验采用 `facebook/esm2_t6_8M_UR50D` 小型 ESM-2 模型；如果 embedding 缓存已存在，状态会显示为 `cache:facebook/esm2_t6_8M_UR50D`。
+
 ## 主要特性
 
 - **多维度特征提取**：包含氨基酸组成、二肽频率、Kyte-Doolittle疏水性、疏水矩、螺旋倾向性和Biopython理化性质等多种特征

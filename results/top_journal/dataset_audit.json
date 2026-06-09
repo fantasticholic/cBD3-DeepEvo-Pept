@@ -1,0 +1,7 @@
+{
+  "raw_rows": 570,
+  "labeled_rows": 171,
+  "positive_label_count": 88,
+  "negative_label_count": 83,
+  "anchor_present": true
+}

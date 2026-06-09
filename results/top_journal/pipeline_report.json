@@ -1,0 +1,25 @@
+{
+  "dataset": {
+    "raw_rows": 570,
+    "labeled_rows": 171,
+    "positive_label_count": 88,
+    "negative_label_count": 83,
+    "anchor_present": true
+  },
+  "embedding_status": "cache:facebook/esm2_t6_8M_UR50D",
+  "selected_model": {
+    "selected_feature_set": "DescriptorPlusESM2",
+    "selected_model": "RandomForest",
+    "selection_rule": "highest mean ROC-AUC, then highest mean F1",
+    "embedding_status": "cache:facebook/esm2_t6_8M_UR50D"
+  },
+  "output_dir": "results/top_journal",
+  "key_outputs": [
+    "model_cv_metrics_summary.csv",
+    "candidate_pareto_nsga2.csv",
+    "candidate_similarity_nearest_neighbors.csv",
+    "candidate_integrated_evidence.csv",
+    "ablation_summary.csv",
+    "figures/"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "selected_feature_set": "DescriptorPlusESM2",
+  "selected_model": "RandomForest",
+  "selection_rule": "highest mean ROC-AUC, then highest mean F1",
+  "embedding_status": "cache:facebook/esm2_t6_8M_UR50D"
+}

@@ -26,31 +26,37 @@ constrained evolution pipeline.
 Command:
 
 ```bash
-python3 deepevo_esm2_nsga2.py --input candidates_v2.csv --output candidates_esm2_nsga2.csv
+python deep_evo_top_journal_pipeline.py
 ```
 
 Current embedding status:
 
 ```text
-fallback_descriptors: No module named 'torch'
+cache:facebook/esm2_t6_8M_UR50D
 ```
 
-This means the Pareto ranking has been executed locally, but the current machine
-did not have the optional deep learning stack needed for real ESM-2 inference.
-After installing `torch` and `transformers`, the same script will automatically
-use:
+This means real ESM-2 embeddings were computed previously on this workspace and
+the reproducible pipeline reused the cache for the current run. The full
+top-journal evidence generator writes:
 
-```text
-facebook/esm2_t6_8M_UR50D
+- `results/top_journal/model_cv_metrics_summary.csv`
+- `results/top_journal/candidate_pareto_nsga2.csv`
+- `results/top_journal/candidate_integrated_evidence.csv`
+- `results/top_journal/ablation_summary.csv`
+- `results/top_journal/figures/`
+
+Validation command:
+
+```bash
+python validate_top_journal_outputs.py
 ```
 
 ## Manuscript wording boundary
 
 Accurate wording:
 
-> We extended DeepEvo-Pept with an ESM-2-ready embedding module and an NSGA-II-style Pareto ranking layer.
+> We extended DeepEvo-Pept with real ESM-2 peptide embeddings, descriptor/ESM-2/hybrid model ablation, and an NSGA-II-style multi-objective ranking layer.
 
-Use this only after real ESM-2 has been executed:
+The current run supports:
 
 > ESM-2 embeddings were computed for all candidate peptides.
-
