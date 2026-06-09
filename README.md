@@ -6,14 +6,6 @@
 cBD3-DeepEvo-Pept是一个基于机器学习与进化算法的抗菌肽设计与优化平台。该项目整合了多种特征提取方法、随机森林分类器和先进的遗传算法，用于设计和优化具有高抗菌活性的多肽序列。平台不仅支持常规序列进化，还提供了带约束条件的进化算法，确保生成的肽序列具有更好的溶解性和安全性。
 
 ## DeepEvo-Pept Dry-lab Pipeline
-
-新增 `deepevo_pipeline.py`，用于生成论文算法板块所需的可复现实验证据。该流程固定为：
-
-```text
-my_500_peptides.csv -> final_train_set.csv -> descriptor/ESM-2 features -> model ablation
--> constrained candidates -> NSGA-II Pareto ranking -> MD/MIC/hemolysis evidence table
-```
-
 核心升级：
 
 - 数据层：按 `MIC <= 10 且 Hemolysis < 20` 标记好肽，按 `MIC >= 32` 标记差肽，中间区间丢弃；保留 cBD3-ABU 作为待 rescue 的 scaffold anchor。
