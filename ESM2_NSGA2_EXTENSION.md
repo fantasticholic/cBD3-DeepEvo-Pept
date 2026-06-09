@@ -26,7 +26,7 @@ constrained evolution pipeline.
 Command:
 
 ```bash
-python deep_evo_top_journal_pipeline.py
+python deepevo_pipeline.py
 ```
 
 Current embedding status:
@@ -37,18 +37,18 @@ cache:facebook/esm2_t6_8M_UR50D
 
 This means real ESM-2 embeddings were computed previously on this workspace and
 the reproducible pipeline reused the cache for the current run. The full
-top-journal evidence generator writes:
+dry-lab evidence generator writes:
 
-- `results/top_journal/model_cv_metrics_summary.csv`
-- `results/top_journal/candidate_pareto_nsga2.csv`
-- `results/top_journal/candidate_integrated_evidence.csv`
-- `results/top_journal/ablation_summary.csv`
-- `results/top_journal/figures/`
+- `results/deepevo_pipeline/model_cv_metrics_summary.csv`
+- `results/deepevo_pipeline/candidate_pareto_nsga2.csv`
+- `results/deepevo_pipeline/candidate_integrated_evidence.csv`
+- `results/deepevo_pipeline/ablation_summary.csv`
+- `results/deepevo_pipeline/figures/`
 
 Validation command:
 
 ```bash
-python validate_top_journal_outputs.py
+python validate_pipeline_outputs.py
 ```
 
 ## Manuscript wording boundary

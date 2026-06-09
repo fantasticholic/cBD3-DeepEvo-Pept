@@ -13,7 +13,7 @@
     "selection_rule": "highest mean ROC-AUC, then highest mean F1",
     "embedding_status": "cache:facebook/esm2_t6_8M_UR50D"
   },
-  "output_dir": "results/top_journal",
+  "output_dir": "results/deepevo_pipeline",
   "key_outputs": [
     "model_cv_metrics_summary.csv",
     "candidate_pareto_nsga2.csv",

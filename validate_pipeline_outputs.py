@@ -1,9 +1,9 @@
 """
-Validate required outputs for the cBD3-ABU top-journal dry-lab pipeline.
+Validate required outputs for the cBD3-ABU DeepEvo-Pept dry-lab pipeline.
 
 Run after:
 
-    python deep_evo_top_journal_pipeline.py
+    python deepevo_pipeline.py
 """
 
 from __future__ import annotations
@@ -14,7 +14,7 @@ from pathlib import Path
 import pandas as pd
 
 
-OUT_DIR = Path("results/top_journal")
+OUT_DIR = Path("results/deepevo_pipeline")
 REQUIRED_FEATURE_SETS = {"DescriptorOnly", "ESM2Only", "DescriptorPlusESM2"}
 REQUIRED_MODELS = {"LogisticRegression", "RandomForest", "HistGradientBoosting"}
 REQUIRED_OBJECTIVES = {
@@ -72,7 +72,7 @@ def main() -> None:
     require(set(["Rank7", "Rank9", "Rank12", "cBD3-ABU"]).issubset(evidence["Peptide"]), "missing lead peptides")
     require(REQUIRED_EVIDENCE.issubset(evidence.columns), "missing MD, MIC, or hemolysis evidence")
 
-    print("Top-journal pipeline outputs validated.")
+    print("DeepEvo-Pept pipeline outputs validated.")
     print(f"Embedding status: {embedding_status}")
     print(f"Best model: {metrics.iloc[0]['FeatureSet']} + {metrics.iloc[0]['Model']}")
 

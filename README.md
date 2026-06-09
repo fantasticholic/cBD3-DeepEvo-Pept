@@ -5,9 +5,9 @@
 ## 项目简介
 cBD3-DeepEvo-Pept是一个基于机器学习与进化算法的抗菌肽设计与优化平台。该项目整合了多种特征提取方法、随机森林分类器和先进的遗传算法，用于设计和优化具有高抗菌活性的多肽序列。平台不仅支持常规序列进化，还提供了带约束条件的进化算法，确保生成的肽序列具有更好的溶解性和安全性。
 
-## 顶刊冲刺版 DeepEvo-Pept Pipeline
+## DeepEvo-Pept Dry-lab Pipeline
 
-新增 `deep_evo_top_journal_pipeline.py`，用于生成论文算法板块所需的可复现实验证据。该流程固定为：
+新增 `deepevo_pipeline.py`，用于生成论文算法板块所需的可复现实验证据。该流程固定为：
 
 ```text
 my_500_peptides.csv -> final_train_set.csv -> descriptor/ESM-2 features -> model ablation
@@ -28,11 +28,11 @@ my_500_peptides.csv -> final_train_set.csv -> descriptor/ESM-2 features -> model
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-python deep_evo_top_journal_pipeline.py
-python validate_top_journal_outputs.py
+python deepevo_pipeline.py
+python validate_pipeline_outputs.py
 ```
 
-关键输出位于 `results/top_journal/`：
+关键输出位于 `results/deepevo_pipeline/`：
 
 - `model_cv_metrics_summary.csv`：Descriptor-only vs ESM2-only vs Hybrid 模型性能表
 - `candidate_pareto_nsga2.csv`：候选序列 ParetoRank、CrowdingDistance 和多目标分数

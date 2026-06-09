@@ -1,5 +1,5 @@
 """
-Top-journal dry-lab pipeline for cBD3-ABU scaffold rescue.
+DeepEvo-Pept dry-lab pipeline for cBD3-ABU scaffold rescue.
 
 This script turns the existing DeepEvo-Pept prototype into a reproducible
 evidence generator:
@@ -987,7 +987,7 @@ def main() -> None:
     parser.add_argument("--labeled", default="final_train_set.csv")
     parser.add_argument("--candidates-basic", default="candidates.csv")
     parser.add_argument("--candidates-v2", default="candidates_v2.csv")
-    parser.add_argument("--out", default="results/top_journal")
+    parser.add_argument("--out", default="results/deepevo_pipeline")
     parser.add_argument("--esm2-model", default="facebook/esm2_t6_8M_UR50D")
     parser.add_argument("--md-dir", default="../../03_计算模拟结果/cBD3-ABU等膜动力学4组/md-results")
     parser.add_argument("--mic", default="../../数据/MIC测定 4.21.xlsx")
